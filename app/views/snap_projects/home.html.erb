@@ -1,0 +1,28 @@
+<% provide(:title, 'Home') %>
+
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%#= render 'shared/user_info' %>
+      </section>
+        
+    </aside>
+
+  </div> 
+  <div> <%= render 'boximages/boximage' %>
+  </div>
+  <br>
+<% else %>
+
+<div class="center hero-unit">
+  <h1>Welcome to the Snap Project</h1>
+
+  <h2>
+    This is the home page for the
+    Ruby on Rails Snap Project.
+  </h2>
+  <br>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+<% end %> 

@@ -1,0 +1,17 @@
+<% @boximage = Boximage.find_by_id(@image.boximage_id) %>
+
+<% boximage_name = @boximage.name %>
+<br>
+<h3>/<%= link_to "#{boximage_name}", :controller => :boximages, :action => :show, :id => @image.boximage_id %></h3>
+<br/><br/>
+
+<br>
+<% if current_user.present? %>
+<%#= link_to 'Like', like_image_path(@image) %>
+
+<%= toggle_like_button(@image, current_user) %>
+
+<% end %>
+<div id="show_image">
+  <%= render 'show_image' %>
+</div>

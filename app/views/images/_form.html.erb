@@ -1,0 +1,55 @@
+<%= form_for(@image) do |f| %>
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+      <% @image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= f.label :boximage_name %><br />
+   <% @boxs=current_user.boximages.all %>
+
+
+<!--    <select name="boximage_id">
+  <% box=Boximage.find_by_id(params[:boximage])%>
+    <%if box!=nil%>
+    <option value=<%=box.id%>>
+    <%=box.name%>
+    </option>
+    <% for box_item in @boxs %>
+      <% if box_item.name != box.name %>
+    <option value=<%=box_item.id%>>
+    <%=box_item.name%>
+    </option>
+      <% end %>
+    <% end %>
+    <% else %>
+    <% for box_item in @boxs %>
+    <option value=<%=box_item.id%>>
+    <%=box_item.name%>
+    </option>
+     <% end %>
+    <% end %>
+ </select>
+-->
+  <%= f.select :boximage_id, current_user.boximages.all.collect { |n| [n.name, n.id] } %>
+
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    
+    </div>
+  <p>
+    <%= f.file_field :file %>
+  </p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

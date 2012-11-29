@@ -1,0 +1,84 @@
+<header style="top:0px">
+  <div id="headBar">
+    <div class="inner clearfix">
+      <h1> <a href="/"><img alt="Logo" src="/images/logo.png"></a></h1>
+
+      <nav id="gnav01" class="nav-top">
+        <ul class="clearfix">
+          <li class="ranking-link">
+            <a href="/">ランキング </a>
+          </li>
+          <li class="boxes-link"><a href="/">イベントBox一覧</a></li>
+          <li class="category-link has-dropdown">
+            <a href="#">カテゴリ一覧</a>
+            <ul style="width: 105px;">
+              <li><a href="/">すべて</a></li>
+              <li><a href="/categories/1">人物</a></li>
+              <li><a href="/categories/2">動物</a></li>
+              <li><a href="/categories/3">ファッション</a></li>
+              <li><a href="/categories/4">風景</a></li>
+              <li><a href="/categories/5">イベント</a></li>
+              <li><a href="/categories/6">料理</a></li>
+              <li><a href="/categories/7">お気に入り</a></li>
+            </ul>
+          </li>
+          <li class="search-link" style="height: 0px">
+            <form accept-charset="UTF-8" action="/search" method="post">
+            <div style="margin:0;padding:0;display:inline">
+              <input name="utf8" type="hidden" value="✓">
+              <input name="authenticity_token" type="hidden" value="TX/b1ooVHNbvfB+5zdLIAyaHWG/ajpxC238uwk+LfxE=">
+            </div>
+            <input class="search-input" id="header-search-place" type="text" name="keyword" placeholder="Search...">
+            </form>          
+          </li>
+        </ul>
+      </nav>
+
+      <nav id="gnav02" class="nav-top login">
+        <ul class="right clearfix">
+          <li class="ico has-dropdown widget-dropdown">
+            <a href="#"><img src="/images/ico_head01.png" alt="" width="31" height="31"><span class="alert">2</span></a>
+  <div class="widget widget-notifications"> 
+    <h3 class="widget-title">お知らせ</h3>
+    <ul>
+   
+    </ul>
+    <%# end %>
+  </div>
+  <li class="ico">
+    <img src="/images/ico_head02.png" alt="" width="31" height="31">
+  </li>
+  <li class="has-dropdown">
+        <a href="/about" style="padding-top: 4px">About</a>
+        <ul style="width: 155px; left: -60px;">
+          <li><a href="/#">スナップとは？</a></li>
+          <li><a href="/#">楽しみ方</a></li>
+          <li><a href="/#">よくある質問</a></li>
+          <li><a href="/#">ご利用規約</a></li>
+          <li><a href="/#">プライバシーポリシー</a></li>
+          <li><a href="/about">運営会社</a></li>
+        </ul>
+          </li>
+          <% if signed_in? %>
+
+          <li class="has-dropdown"><%= link_to current_user.name, current_user %>
+            <ul style="width: 135px">
+              <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+              <li><a href="/#">お友だちを招待</a></li>         
+              <li><%= link_to "設定", current_user %></li>      
+              <li>
+                  <%= link_to "ログアウト", signout_path, method: "delete" %>
+                </li>
+            </ul>
+          </li>
+          <li><%= link_to image_tag("/images/header/btn_photo.png", alt: "Rails"), new_image_path %></li>
+          <% else %>
+            <li><%#= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "ログイン", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+ 

@@ -1,0 +1,14 @@
+<div id="navigation">
+		<p class="links">
+			<% unless @previous.nil? %>
+			<%= link_to "Previous", @previous %>
+			<% unless @next.nil? %>
+			 | 
+			<% end %>
+			<% end %>
+			<% unless @next.nil? %>
+			<%= link_to "Next", @next %> 
+			<% end %>
+		</p>
+</div>
+<%= image_tag(@image.file_url(:single)) %>

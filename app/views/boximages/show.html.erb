@@ -1,0 +1,121 @@
+<% provide(:title, @boximage.name) %>
+
+
+<html lang="ja"><head>
+  <title>Snap</title>
+
+</head>
+
+<body>
+    
+<div id="two-columns-page-wrapper" class="clearfix">
+  <p id="notice"></p>
+  <div style="float: left;">
+    
+<aside class="sidebar" style="float: none">
+  <div>
+      <h2><%= current_user.name %></h2>
+  </div>
+  <div class="avatar-image">
+    <%= image_tag current_user.avatar.url(:medium) %>
+  </div>
+ <br>
+
+ <%#= render 'follow_form' if signed_in? %>
+
+  <div class="buttons-group">
+      <a href="/longnb/design" class="button">デザイン変更</a>
+
+    <ul class="networks">
+      <li><a href="#" class="">Twitter</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#" class="">Mixi</a></li>
+      <li><a href="#" class="">Gree</a></li>
+    </ul>
+  </div>
+
+  <div class="bio">
+    <p></p>
+      <a href="/setting/profile" class="edit-bio-link">プロフィール編集</a>
+  </div>
+
+  <nav class="side-nav">
+  <ul>
+    <li class="active">
+        <a href="/users/<%= current_user.id %>">
+
+        <span class="count"><%= current_user.boximages.count %></span>Boxs
+       </a>
+    </li>
+    <li>
+     <a href="<%= following_user_path(current_user) %>">
+        <span class="count"><%= current_user.followed_users.count %></span>フォロー
+      </a>
+    </li>
+    <li>
+      <a href="<%= followers_user_path(current_user) %>">
+        <span class="count"><%= current_user.followers.count %></span>フォロワー
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="count">0000</span>いいね!
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="count">0000</span>Events
+      </a>
+    </li>
+  </ul>
+  </nav>
+
+  <div class="button button-orange" data-remote="true" id="new-box-button" style="width:100px;">
+    <%= link_to "New Boximages", new_boximage_path %>
+  </div>
+
+  <div class="buttons-group">
+  </div>
+
+</aside>
+
+
+
+    <aside class="sidebar-activity">
+
+
+  </aside>
+
+</div>
+  <section class="main">
+  <div class="cover">
+  <div class="cover-inner has-label">
+         <%= image_tag @current_user.cover.url %>
+  </div>
+</div>
+
+
+<div id="multipleimages">
+ <%= @boximage.name %>
+ <% if current_user.id == @boximage.user_id %>
+ <!--
+ <p><%= link_to "Add some more images", :controller => 'images', :action => 'new', :boximage => @boximage %></p>
+-->
+ <% end %> 
+<table>
+  <% count = 0.0 %>
+  <% for image in @boximage.images.find(:all, :order => "Id ASC") %>
+  <% count += 1%>
+    <% if count == 1 || ( (count-1) / 4.0 == ( (count-1) / 4.0).to_i ) %><tr><% end %>
+        <td><%=  link_to image_tag(image.file_url(:thumb)), image_path(image) %></td>
+    <% if count / 4.0 == (count / 4.0).to_i %></tr><% end %>
+  <% end %>
+</table>
+ </div>
+ <% if current_user.id == @boximage.user_id %>
+  <%= link_to 'Edit', edit_boximage_path(@boximage) %>
+<% end %> 
+
+
+</div>
+</body>

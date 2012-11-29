@@ -1,0 +1,19 @@
+<div id="multipleimages">
+<% @boximages = Boximage.all%>
+        <% count = 0.0 %>
+        <% for boximage in @boximages %>
+        <% boximage_cover = boximage.images.first%>
+        <% if boximage_cover!=nil%>
+        <% count += 1%>
+        <div class="thumb">
+          <h3><%= link_to boximage.name, boximage %></h3>
+          <% if count == 1 || ( (count-1) / 4.0 == ( (count-1) / 4.0).to_i ) %><tr>
+          <% end %>
+         <%=  link_to image_tag(boximage_cover.file_url(:thumb)), boximage_path(boximage) %>
+          <% if count / 4.0 == (count / 4.0).to_i %>
+          </tr>
+          <% end %>
+        </div>
+    <% end %>
+  <% end %>
+</div>

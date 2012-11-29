@@ -1,0 +1,101 @@
+<% provide(:title, @title) %>
+
+<html lang="ja"><head>
+  <title>Snap</title>
+
+
+</head>
+<body>
+  
+<div id="two-columns-page-wrapper" class="clearfix">
+  <p id="notice"></p>
+  <div style="float: left;">
+    
+<aside class="sidebar" style="float: none">
+  <div>
+      <h2><%= @user.name %></h2>
+  </div>
+  <div class="avatar-image">
+    <%= image_tag @user.avatar.url(:medium) %>
+  </div>
+
+  <br>
+  <div class="buttons-group">
+    <ul><%= render 'follow_form' if signed_in? %></ul>  
+
+    <ul class="networks">
+      <li><a href="#" class="">Twitter</a></li>
+      <li><a href="#">Facebook#</a></li>
+      <li><a href="#" class="">Mixi</a></li>
+      <li><a href="#" class="">Gree</a></li>
+    </ul>
+  </div>
+
+  <div class="bio">
+    <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
+      
+      
+  </div>
+
+  <nav class="side-nav">
+  <ul>
+    <li>
+      <a href="/users/<%= @user.id %>">
+        <span class="count"><%= @user.boximages.count %></span>Boxs
+      </a>
+    </li>
+    <li>
+     <a href="<%= following_user_path(@user) %>">
+        <span class="count"><%= @user.followed_users.count %></span>フォロー
+      </a>
+    </li>
+    <li>
+      <a href="<%= followers_user_path(@user) %>">
+        <span class="count"><%= @user.followers.count %></span>フォロワー
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="count">0000</span>いいね!
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="count">0000</span>Events
+      </a>
+    </li>
+  </ul>
+  </nav>
+
+   <div class="button button-orange" data-remote="true" id="new-box-button" style="width:100px;">
+    <%= link_to "New Boximages", new_boximage_path %>
+  </div>
+  
+  <div class="buttons-group">
+  </div>
+
+</aside>
+
+  </div>
+  <section class="main">
+  <div class="cover">
+  <div class="cover-inner has-label">
+      <%= image_tag @user.cover.url %>
+  </div>
+</div>
+
+
+
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+
+</div>
+
+</body></html>

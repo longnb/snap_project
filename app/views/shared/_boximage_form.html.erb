@@ -1,0 +1,12 @@
+<%= form_for(@boximage) do |f| %>
+  <%#= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :name, placeholder: "Compose new name boximage..." %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :description, placeholder: "Compose new description boximage..." %>
+  </div>
+
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

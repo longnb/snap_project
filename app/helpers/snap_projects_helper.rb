@@ -1,0 +1,2 @@
+module SnapProjectsHelper
+end
